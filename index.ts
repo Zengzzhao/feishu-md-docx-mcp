@@ -7,10 +7,6 @@ import {
 import * as lark from "@larksuiteoapi/node-sdk";
 import "dotenv/config";
 
-console.log = (...args) => process.stderr.write(args.join(" ") + "\n");
-console.info = (...args) => process.stderr.write(args.join(" ") + "\n");
-console.warn = (...args) => process.stderr.write(args.join(" ") + "\n");
-
 // 初始化飞书客户端
 const client = new lark.Client({
   appId: process.env.APP_ID!,
@@ -88,12 +84,15 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
           {
             data: {
               content: markdown_content,
-              content_type: 'markdown',
+              content_type: "markdown",
             },
           },
           lark.withUserAccessToken(process.env.TOKEN!),
         );
-        const { blocks, first_level_block_ids } = convertRes.data;
+        const { blocks, first_level_block_ids } = convertRes.data!;
+        if (!blocks || !first_level_block_ids) {
+          throw new Error("转换markdown失败");
+        }
         // 步骤2：用blocks更新文档内容
         // 分批插入
         const BATCH_SIZE = 500;
