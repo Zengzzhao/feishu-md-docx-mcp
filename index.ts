@@ -127,7 +127,12 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
   } catch (err) {
     console.error(JSON.stringify(err));
     return {
-      content: [{ type: "text", text: `Error: ${err.message}` }],
+      content: [
+        {
+          type: "text",
+          text: `Error: ${err instanceof Error ? err.message : String(err)}`,
+        },
+      ],
       isError: true,
     };
   }
