@@ -1,14 +1,32 @@
 {
   "name": "feishu-md-docx-mcp",
-  "version": "0.0.1",
-  "description": "",
-  "main": "index.js",
+  "version": "0.0.2-beta.2",
+  "bin": {
+    "feishu-md-docx-mcp": "./dist/index.js"
+  },
+  "module": "dist/index.js",
   "type": "module",
+  "files": [
+    "dist/*"
+  ],
+  "typings": "dist/index.d.ts",
   "scripts": {
     "build": "tsc"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "feishu",
+    "markdown",
+    "mcp",
+    "document"
+  ],
+  "author": "zengzizhao",
+  "description": "将本地markdown内容上传至飞书云文档的mcp服务",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Zengzzhao/feishu-md-docx-mcp"
+  },
+  "homepage": "https://github.com/Zengzzhao/feishu-md-docx-mcp",
+  "bugs": "https://github.com/Zengzzhao/feishu-md-docx-mcp/issues",
   "license": "ISC",
   "packageManager": "pnpm@10.19.0",
   "dependencies": {
